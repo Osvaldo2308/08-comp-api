@@ -17,40 +17,29 @@
 </template>
 
 <script>
-import axios from 'axios';
-import { ref } from 'vue';
+//import axios from 'axios';
+//import { ref } from 'vue';
+
+import useUsers from '../composables/useUsers'
+
 export default {
-setup(){
-    const users = ref([])
-    const isLoading = ref(true)
-    const currentPage = ref(1)
-    const errorMessage= ref()
+setup() {
+    const{
+        isLoading,
+        errorMessage,
+        users,
+        prevPage,
+        nextPage,
+        currentPage
+    } = useUsers()
 
-    const getUsers = async(page = 1) =>{
-        if(page<=0) page=1
-        isLoading.value=true
-        const {data} = await axios.get('https://reqres.in/api/users',{
-            params:{page}
-            })
-            if(data.data.length > 0){
-                users.value= data.data
-                currentPage.value= page
-                errorMessage.value=null
-            }else if(currentPage.value > 0){
-                errorMessage.value = 'No hay mas usuarios'
-            } 
-            isLoading.value = false
-        }
-        getUsers()
-        return {
-            users,
-            isLoading,
-            currentPage,
-            errorMessage,
-            currentPage,
-
-            nextPage: () => getUsers( currentPage.value + 1),
-            prevPage: () => getUsers( currentPage.value - 1)
+    return{
+        isLoading,
+        errorMessage,
+        users,
+        prevPage,
+        nextPage,
+        currentPage,
         }
     }
 }
