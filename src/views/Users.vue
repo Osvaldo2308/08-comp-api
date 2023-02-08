@@ -35,7 +35,8 @@ setup(){
             if(data.data.length > 0){
                 users.value= data.data
                 currentPage.value= page
-            }else if(currentPage.page>0){
+                errorMessage.value=null
+            }else if(currentPage.value > 0){
                 errorMessage.value = 'No hay mas usuarios'
             } 
             isLoading.value = false
