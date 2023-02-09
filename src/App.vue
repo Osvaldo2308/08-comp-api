@@ -4,7 +4,9 @@
     <router-link to="/about">About</router-link> |
     <router-link :to="{ name: 'counter' }">Counter</router-link>|
     <router-link :to="{ name: 'users'}">Usuarios</router-link>|
-    <router-link :to="{ name: 'pokemon-search'}">Pokemon</router-link>
+    <router-link :to="{ name: 'pokemon-search'}">Pokemon</router-link>|
+    <router-link :to="{ name: 'todo'}">Todo Vuex</router-link>|
+    <router-link :to="{ name: 'slots'}">Slots</router-link>
   </div>
 
   
