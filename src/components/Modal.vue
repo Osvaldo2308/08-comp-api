@@ -1,10 +1,16 @@
 <template>
-  <div class="modal-background fade-in">
+  <div class="modal-background fade-in"
+    @click.self="$emit('on:close')">
+
     <div class="modal-container">
+        
         <slot name="header"/>
         <slot name="body"/>
         <slot name="footer"/>
 
+        <slot name="exposed" :newTitle="newTitle">
+
+        </slot>
         <!-- <slot>
             <div class="center">
                 No tienes contenido en el Modal
@@ -16,8 +22,14 @@
 
 <script>
 export default {
-    setup(props, context){
+    props:['title'],
+    emits: ['on:close'],
 
+    setup(props, context){
+        console.log({props, context})
+        return{
+            newTitle: props.title?.toUpperCase()
+        }
     }
 }
 </script>
